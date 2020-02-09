@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Label.gd" type="Script" id=1]
+
+[node name="Game" type="Node2D"]
+
+[node name="UI" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 475.537
+margin_top = 282.167
+margin_right = 619.537
+margin_bottom = 391.167
+
+[node name="Label" type="Label" parent="UI"]
+anchor_right = 1.0
+margin_left = -1.80505
+margin_top = 14.44
+margin_right = -25.8051
+margin_bottom = 28.44
+align = 1
+valign = 1
+script = ExtResource( 1 )
