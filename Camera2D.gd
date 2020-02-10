@@ -1,7 +1,7 @@
 extends Camera2D
 
 var move_speed = 500;
-var zoom_speed = 0.8;
+var zoom_speed = 0.05;
 var current_zoom = 1;
 var min_zoom = 0.3;
 var max_zoom = 1.8;
@@ -11,11 +11,11 @@ var moving_up = false;
 var moving_down = false;
 
 func _process(delta):
-	var current_zoom = get_zoom().x
+	current_zoom = get_zoom().x
 	var camera_location = get_offset()
 	var move_vec = Vector2()	
 	
-	# Camera Movement with keys - currently bound to arrow keys
+	# Camera Movement
 	if Input.is_action_pressed("camera_up") or moving_up:
 		move_vec.y -= 1
 	if Input.is_action_pressed("camera_down") or moving_down:
@@ -24,29 +24,34 @@ func _process(delta):
 		move_vec.x -= 1
 	if Input.is_action_pressed("camera_right") or moving_right:
 		move_vec.x += 1
-	move(camera_location + (move_vec * move_speed * current_zoom * delta))
+	move(camera_location + (move_vec * move_speed * current_zoom * delta * 2))
 	
-	# Camera Zoom - currently bound to "[" and "]""
-	if Input.is_action_pressed("camera_zoom_in"):
-		zoom_in(delta)
-	if Input.is_action_pressed("camera_zoom_out"):
-		zoom_out(delta)	
+func _input(event):
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == BUTTON_WHEEL_UP :
+			zoom_in()
+		if event.button_index == BUTTON_WHEEL_DOWN:
+			zoom_out()
+	if event is InputEventMouseMotion and Input.is_action_pressed("camera_move"):
+		var move_vec = event.relative
+		move(get_offset() - (move_vec * current_zoom))
 
 func move(target):
 	set_offset(target)
 	
-func zoom_out(delta):
-	current_zoom += (zoom_speed * delta)
+func zoom_out():
+	current_zoom += (zoom_speed)
 	if current_zoom > max_zoom:
 		current_zoom = max_zoom
 	zoom_camera(current_zoom);
 	
-func zoom_in(delta):
-	current_zoom -= (zoom_speed * delta)
+func zoom_in():
+	current_zoom -= (zoom_speed)
 	if current_zoom < min_zoom:
 		current_zoom = min_zoom
-	var move_vec = (get_global_mouse_position() - get_offset()).normalized()
-	move(get_offset() + (move_vec * move_speed * delta))
+	else:
+		var move_vec = (get_global_mouse_position() - get_offset()).normalized()
+		move(get_offset() + (move_vec * move_speed * zoom_speed))
 	zoom_camera(current_zoom);
 		
 func zoom_camera(current_zoom):
