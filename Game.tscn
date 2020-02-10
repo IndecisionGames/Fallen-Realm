@@ -1,28 +1,150 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://map/grid_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://map/grid_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Camera2D.gd" type="Script" id=2]
 
 [node name="Game" type="Node2D"]
-
-[node name="UI" type="Control" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 475.537
-margin_top = 282.167
-margin_right = 619.537
-margin_bottom = 391.167
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Map" type="Node" parent="."]
 
 [node name="Grid" type="TileMap" parent="Map"]
-tile_set = ExtResource( 2 )
+tile_set = ExtResource( 1 )
 cell_size = Vector2( 128, 128 )
 cell_quadrant_size = 8
 cell_custom_transform = Transform2D( 128, 0, 0, 128, 0, 0 )
 format = 1
-tile_data = PoolIntArray( -65538, 1, 0, -65537, 1, 0, -131072, 1, 0, -131071, 1, 0, -131070, 1, 0, -131069, 1, 0, -131068, 1, 0, -131067, 1, 0, -131066, 1, 0, -131065, 1, 0, -131064, 1, 0, -131063, 1, 0, -2, 1, 0, -1, 1, 0, -65536, 1, 0, -65535, 1, 0, -65534, 1, 0, -65533, 1, 0, -65532, 1, 0, -65531, 1, 0, -65530, 1, 0, -65529, 1, 0, -65528, 1, 0, -65527, 1, 0, 65534, 1, 0, 65535, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 131070, 1, 0, 131071, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 196606, 1, 0, 196607, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 262142, 1, 0, 262143, 1, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 327678, 1, 0, 327679, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 393214, 1, 0, 393215, 1, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 458750, 1, 0, 458751, 1, 0, 393216, 1, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0 )
+tile_data = PoolIntArray( -131077, 1, 0, -131076, 1, 0, -131075, 1, 0, -131074, 1, 0, -131073, 1, 0, -196608, 1, 0, -196607, 1, 0, -196606, 1, 0, -196605, 1, 0, -196604, 1, 0, -196603, 1, 0, -196602, 1, 0, -196601, 1, 0, -196600, 1, 0, -196599, 1, 0, -65541, 1, 0, -65540, 1, 0, -65539, 1, 0, -65538, 1, 0, -65537, 1, 0, -131072, 1, 0, -131071, 1, 0, -131070, 1, 0, -131069, 1, 0, -131068, 1, 0, -131067, 1, 0, -131066, 1, 0, -131065, 1, 0, -131064, 1, 0, -131063, 1, 0, -5, 1, 0, -4, 1, 0, -3, 1, 0, -2, 1, 0, -1, 1, 0, -65536, 1, 0, -65535, 1, 0, -65534, 1, 0, -65533, 1, 0, -65532, 1, 0, -65531, 1, 0, -65530, 1, 0, -65529, 1, 0, -65528, 1, 0, -65527, 1, 0, 65531, 1, 0, 65532, 1, 0, 65533, 1, 0, 65534, 1, 0, 65535, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 131067, 1, 0, 131068, 1, 0, 131069, 1, 0, 131070, 1, 0, 131071, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 196603, 1, 0, 196604, 1, 0, 196605, 1, 0, 196606, 1, 0, 196607, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 262139, 1, 0, 262140, 1, 0, 262141, 1, 0, 262142, 1, 0, 262143, 1, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 327675, 1, 0, 327676, 1, 0, 327677, 1, 0, 327678, 1, 0, 327679, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 393211, 1, 0, 393212, 1, 0, 393213, 1, 0, 393214, 1, 0, 393215, 1, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 458747, 1, 0, 458748, 1, 0, 458749, 1, 0, 458750, 1, 0, 458751, 1, 0, 393216, 1, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+script = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -20.0
+margin_right = 112.0
+margin_bottom = 89.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MouseBorder" type="Control" parent="CanvasLayer/UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.46301
+margin_top = -2.16699
+margin_right = 4.46301
+margin_bottom = -2.16699
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="Control" parent="CanvasLayer/UI/MouseBorder"]
+anchor_left = -4.323
+anchor_top = -3.191
+anchor_right = -3.767
+anchor_bottom = 3.505
+margin_left = 0.512085
+margin_top = 109.819
+margin_right = -19.552
+margin_bottom = -100.045
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Up" type="Control" parent="CanvasLayer/UI/MouseBorder"]
+anchor_left = -4.319
+anchor_top = -3.193
+anchor_right = 4.708
+anchor_bottom = -2.459
+margin_left = 139.936
+margin_top = 0.0370178
+margin_right = -139.952
+margin_bottom = -19.969
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Down" type="Control" parent="CanvasLayer/UI/MouseBorder"]
+anchor_left = 1.441
+anchor_top = 2.862
+anchor_right = 1.65
+anchor_bottom = 3.506
+margin_left = -689.504
+margin_top = 20.042
+margin_right = 300.4
+margin_bottom = 9.84598
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="Control" parent="CanvasLayer/UI/MouseBorder"]
+anchor_left = 4.15
+anchor_top = -3.193
+anchor_right = 4.705
+anchor_bottom = 3.506
+margin_left = 20.4
+margin_top = 110.037
+margin_right = 0.479919
+margin_bottom = -100.154
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpLeft" type="Control" parent="CanvasLayer/UI/MouseBorder"]
+margin_left = -622.0
+margin_top = -348.0
+margin_right = -482.0
+margin_bottom = -238.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DownLeft" type="Control" parent="CanvasLayer/UI/MouseBorder"]
+margin_left = -622.0
+margin_top = 282.0
+margin_right = -482.0
+margin_bottom = 392.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpRight" type="Control" parent="CanvasLayer/UI/MouseBorder"]
+margin_left = 538.0
+margin_top = -348.0
+margin_right = 678.0
+margin_bottom = -238.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DownRight" type="Control" parent="CanvasLayer/UI/MouseBorder"]
+margin_left = 538.0
+margin_top = 282.0
+margin_right = 678.0
+margin_bottom = 392.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/Left" to="Camera2D" method="_on_Left_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/Left" to="Camera2D" method="_on_Left_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/Up" to="Camera2D" method="_on_Up_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/Up" to="Camera2D" method="_on_Up_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/Down" to="Camera2D" method="_on_Down_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/Down" to="Camera2D" method="_on_Down_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/Right" to="Camera2D" method="_on_Right_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/Right" to="Camera2D" method="_on_Right_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/UpLeft" to="Camera2D" method="_on_UpLeft_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/UpLeft" to="Camera2D" method="_on_UpLeft_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/DownLeft" to="Camera2D" method="_on_DownLeft_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/DownLeft" to="Camera2D" method="_on_DownLeft_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/UpRight" to="Camera2D" method="_on_UpRight_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/UpRight" to="Camera2D" method="_on_UpRight_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/DownRight" to="Camera2D" method="_on_DownRight_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/DownRight" to="Camera2D" method="_on_DownRight_mouse_exited"]
