@@ -1,6 +1,6 @@
 extends TileMap
 
-onready var highlight = get_node("CellHighlight")
+onready var highlight = get_node("HoverCellHighlight")
 var current_cell = Vector2(0,0)
 var grid_size = Vector2(0,0)
 
