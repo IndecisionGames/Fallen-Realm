@@ -43,7 +43,7 @@ func zoom_out():
 	current_zoom += (zoom_speed)
 	if current_zoom > max_zoom:
 		current_zoom = max_zoom
-	zoom_camera(current_zoom);
+	zoom_camera();
 	
 func zoom_in():
 	current_zoom -= (zoom_speed)
@@ -52,9 +52,9 @@ func zoom_in():
 	else:
 		var move_vec = (get_global_mouse_position() - get_offset()).normalized()
 		move(get_offset() + (move_vec * move_speed * zoom_speed))
-	zoom_camera(current_zoom);
+	zoom_camera();
 		
-func zoom_camera(current_zoom):
+func zoom_camera():
 	set_zoom(Vector2(current_zoom, current_zoom))
 
 
