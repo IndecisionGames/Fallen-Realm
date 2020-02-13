@@ -25,6 +25,9 @@ func disable_highlight():
 	highlight.set_visible(false)
 
 func hightlight_cell(highlight_type, cell):
-	var target_pos = map_to_world(cell, true) + (cell_size / 2)
+	var target_pos = map_to_world_fixed(cell)
 	highlight_type.global_position = target_pos
 	highlight_type.set_visible(true)
+
+func map_to_world_fixed(coords):
+	return map_to_world(coords, true) + (cell_size / 2)

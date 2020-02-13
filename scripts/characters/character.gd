@@ -17,7 +17,6 @@ func _ready():
 	current_position = Grid.world_to_map(global_position)
 	
 func select():
-	print("selected")
 	selected = true
 	global_cancel_origin = true
 	get_tree().call_group("characters", "cancel")
@@ -25,7 +24,6 @@ func select():
 
 func cancel():
 	if not global_cancel_origin:
-		print("cancelled")
 		for n in highlighted_cells:
 			n.queue_free()
 		highlighted_cells.clear()
@@ -33,9 +31,13 @@ func cancel():
 	global_cancel_origin = false
 	
 func act():
-	print("acted")
-	# do nothing if not clicked in valid (green) cell
-	# do something if clicked on valid cell (e.g. move to that cell)
+	if valid_movement_target(target_position):
+		move_to(target_position)
+	cancel()
+	
+func move_to(cell):
+	set_global_position(Grid.map_to_world_fixed(cell))
+	current_position = cell
 
 func _on_SelectZone_mouse_entered():
 	under_mouse = true
@@ -66,4 +68,10 @@ func highlight_reachable_cells():
 					add_child(highlight)
 					highlighted_cells.append(highlight)
 					Grid.hightlight_cell(highlight, cell)
-	
+
+func valid_movement_target(target):
+	for cell in highlighted_cells:
+		var cell_position = Grid.world_to_map(cell.global_position)
+		if target == cell_position:
+			return true
+	return false
