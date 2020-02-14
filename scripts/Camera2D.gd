@@ -9,11 +9,16 @@ var moving_left = false;
 var moving_right = false;
 var moving_up = false;
 var moving_down = false;
+var start_position;
 
+func _ready():
+	start_position = get_offset()
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	
 func _process(delta):
 	current_zoom = get_zoom().x
 	var camera_location = get_offset()
-	var move_vec = Vector2()	
+	var move_vec = Vector2()
 	
 	# Camera Movement
 	if Input.is_action_pressed("camera_up") or moving_up:
@@ -26,6 +31,12 @@ func _process(delta):
 		move_vec.x += 1
 	move(camera_location + (move_vec * move_speed * current_zoom * delta * 2))
 	
+	if Input.is_action_pressed("camera_center"):
+		move(start_position)
+		
+	if Input.is_action_pressed("ui_cancel"):
+		get_tree().quit()
+	
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == BUTTON_WHEEL_UP :
@@ -35,6 +46,7 @@ func _input(event):
 	if event is InputEventMouseMotion and Input.is_action_pressed("camera_move"):
 		var move_vec = event.relative
 		move(get_offset() - (move_vec * current_zoom))
+
 
 func move(target):
 	set_offset(target)

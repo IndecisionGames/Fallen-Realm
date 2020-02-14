@@ -19,8 +19,6 @@ var global_cancel_origin = false
 var facing = Direction.South
 
 var move_speed = 300
-var turn_speed = 1
-var turning_to;
 var movement_vec = Vector2(0,0)
 var next_cell;
 var final_cell;
@@ -34,6 +32,7 @@ func _ready():
 	current_position = Grid.world_to_map(global_position)
 	
 func _process(delta):
+	check_under_mouse()
 	if moving:
 		if in_range(next_cell):
 			movement_vec = Vector2(0,0)
@@ -98,18 +97,14 @@ func move_to(cell):
 	final_cell = cell
 	pick_next_cell()
 	moving = true
-
-func _on_SelectZone_mouse_entered():
-	under_mouse = true
-
-
-func _on_SelectZone_mouse_exited():
-	under_mouse = false
+	
+func check_under_mouse():
+	under_mouse =  (Grid.world_to_map(get_global_mouse_position()) == current_position)
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == BUTTON_LEFT:
-			if under_mouse and not selected:
+			if under_mouse and not selected and not moving:
 				select()
 			elif selected and not under_mouse:
 				cancel()
@@ -135,7 +130,3 @@ func valid_movement_target(target):
 		if target == cell_position:
 			return true
 	return false
-	
-func determine_direction(target):
-	var dx = target.x - current_position.x
-	var dy = target.y - current_position.y

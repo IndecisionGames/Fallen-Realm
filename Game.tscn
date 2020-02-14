@@ -154,7 +154,7 @@ __meta__ = {
 [node name="Characters" type="Node" parent="."]
 
 [node name="Character" parent="Characters" instance=ExtResource( 5 )]
-position = Vector2( 575.651, 317.683 )
+position = Vector2( 580, 320 )
 z_index = 2
 [connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/Left" to="Camera2D" method="_on_Left_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/Left" to="Camera2D" method="_on_Left_mouse_exited"]
