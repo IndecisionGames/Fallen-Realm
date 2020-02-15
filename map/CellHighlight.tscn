@@ -1,6 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://map/green_cell_highlight_128.png" type="Texture" id=1]
+[ext_resource path="res://map/green_hexcell_highlight_test128.png" type="Texture" id=1]
 
 [node name="CellHighlight" type="Sprite"]
+z_index = -1
 texture = ExtResource( 1 )
+offset = Vector2( 0, 10 )
