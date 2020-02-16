@@ -1,12 +1,15 @@
 extends TileMap
 
+var cell_class = preload("res://scripts/map/Cell.gd")
 onready var highlight = get_node("HoverCellHighlight")
 var current_cell = Vector2(0,0)
 var grid_size = Vector2(0,0)
+var cells = {} # Dictionary of cells: key - Vector2 location on map, value - instance of cell class
 
 func _ready():
 	grid_size = get_used_cells().back()
 	highlight.set_visible(false)
+	initialise_cells()
 
 func _process(_delta):
 	var mouse_position = get_global_mouse_position()
@@ -34,3 +37,64 @@ func map_to_world_fixed(coords):
 	
 func distance(cell1, cell2):
 	return map_to_world_fixed(cell1).distance_to(map_to_world_fixed(cell2))
+
+func initialise_cells():
+	for x in range(0, grid_size.x + 1):
+		for y in range(0, grid_size.y + 1):
+			var cell = cell_class.Cell.new("Grass", Vector2(x, y))
+			cells[Vector2(x, y)] = cell
+
+func get_movement_path(start, end):
+	return a_star(start, end)
+	
+func a_star(start, end):
+	var open_list = []
+	var closed_list = []
+	
+	var first = cells[start]
+	first.g = 0
+	first.h = 0
+	first.f = 0
+	open_list.append(first)
+	
+	var iterations = 0
+	
+	while not open_list.empty():
+		iterations += 1
+		open_list.sort_custom(cell_class.Cell, "sort_ascending")
+		var current = open_list.pop_front()
+		if current.position == end:
+			closed_list.append(current)
+			return closed_list
+		var neighbours = get_neighbours(current, end)
+		for n in neighbours:
+			var ignore = false
+			for i in range(0, open_list.size()):
+				if n.position == open_list[i].position:
+					if open_list[i].f <= n.f:
+						ignore = true
+			for j in range(0, closed_list.size()):
+				if n.position == closed_list[j].position:
+					if closed_list[j].f <= n.f:
+						ignore = true
+			if not ignore:
+				open_list.append(n)
+		closed_list.append(current)
+	return closed_list	
+		
+func get_neighbours(current, end):
+	var neighbours = []
+	for i in range(-1, 2):
+		for j in range(-1, 2):
+			var cell = Vector2(i, j) + current.position
+			var dist = distance(cell, current.position)
+			if dist <= 128:
+				if cell_in_map(cell) and cell != current.position:
+					var neighbour = cells[cell]
+					neighbour.parent = current
+					neighbour.g = current.g + dist
+					neighbour.h = distance(cell, end)
+					neighbour.f = neighbour.g + neighbour.h
+					neighbours.append(neighbour)
+	return neighbours
+
