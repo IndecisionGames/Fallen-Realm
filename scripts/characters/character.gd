@@ -10,7 +10,7 @@ enum Direction{
 var green_cell = preload("res://map/CellHighlight.tscn")
 
 var selected = false
-var movement = 4
+var movement = 2
 var current_position;
 var target_position;
 var under_mouse = false;
@@ -62,7 +62,7 @@ func pick_next_cell():
 		next_cell = current_position + Vector2(0,-1)
 		facing = Direction.North
 		character_sprite.set_global_rotation_degrees(180)
-	movement_vec = next_cell - current_position
+	movement_vec = (Grid.map_to_world_fixed(next_cell) - Grid.map_to_world_fixed(current_position)).normalized()
 	
 func in_range(cell):
 	var target = Grid.map_to_world_fixed(cell)
@@ -116,10 +116,12 @@ func _input(event):
 func highlight_reachable_cells():
 	for i in range(-movement, movement+1):
 		for j in range(-movement, movement+1):
-			if abs(i) + abs(j) <= movement:
-				var cell = Vector2(i, j) + current_position
+			var cell = Vector2(i, j) + current_position
+			if Grid.distance(cell, current_position) <= movement*128:
 				if Grid.cell_in_map(cell) and cell != current_position:
 					var highlight = green_cell.instance()
+					highlight.z_as_relative = false
+					highlight.z_index = -8
 					add_child(highlight)
 					highlighted_cells.append(highlight)
 					Grid.hightlight_cell(highlight, cell)
@@ -130,3 +132,4 @@ func valid_movement_target(target):
 		if target == cell_position:
 			return true
 	return false
+

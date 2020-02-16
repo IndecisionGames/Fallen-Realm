@@ -12,7 +12,8 @@
 [node name="Map" type="Node" parent="."]
 
 [node name="Grid" type="TileMap" parent="Map"]
-z_index = -1
+z_index = -9
+z_as_relative = false
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 127, 96 )
 cell_custom_transform = Transform2D( 127, 0, 0, 96, 0, 0 )
@@ -23,9 +24,12 @@ script = ExtResource( 4 )
 
 [node name="HoverCellHighlight" parent="Map/Grid" instance=ExtResource( 3 )]
 visible = false
+z_index = -5
+z_as_relative = false
 
 [node name="Terrain" type="TileMap" parent="Map"]
-z_index = -2
+z_index = -10
+z_as_relative = false
 tile_set = ExtResource( 6 )
 cell_size = Vector2( 127, 96 )
 cell_custom_transform = Transform2D( 127, 0, 0, 96, 0, 0 )
@@ -155,7 +159,7 @@ __meta__ = {
 [node name="Characters" type="Node" parent="."]
 
 [node name="Character" parent="Characters" instance=ExtResource( 5 )]
-position = Vector2( 580, 320 )
+position = Vector2( 630, 340 )
 z_index = 2
 [connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/Left" to="Camera2D" method="_on_Left_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/Left" to="Camera2D" method="_on_Left_mouse_exited"]

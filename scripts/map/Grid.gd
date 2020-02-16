@@ -31,3 +31,6 @@ func hightlight_cell(highlight_type, cell):
 
 func map_to_world_fixed(coords):
 	return map_to_world(coords, false) + (cell_size / 2)
+	
+func distance(cell1, cell2):
+	return map_to_world_fixed(cell1).distance_to(map_to_world_fixed(cell2))
