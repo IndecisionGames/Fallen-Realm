@@ -63,6 +63,10 @@ camera_center={
  ]
 }
 
+[logging]
+
+file_logging/enable_file_logging=true
+
 [rendering]
 
 environment/default_clear_color=Color( 0.133333, 0.133333, 0.133333, 1 )

@@ -37,6 +37,9 @@ func map_to_world_fixed(coords):
 	
 func distance(cell1, cell2):
 	return map_to_world_fixed(cell1).distance_to(map_to_world_fixed(cell2))
+	
+func distance_squared(cell1, cell2):
+	return map_to_world_fixed(cell1).distance_squared_to(map_to_world_fixed(cell2))
 
 func initialise_cells():
 	for x in range(0, grid_size.x + 1):
@@ -50,6 +53,7 @@ func get_movement_path(start, end):
 func a_star(start, end):
 	var open_list = []
 	var closed_list = []
+	var path = []
 	
 	var first = cells[start]
 	first.g = 0
@@ -63,24 +67,30 @@ func a_star(start, end):
 		iterations += 1
 		open_list.sort_custom(cell_class.Cell, "sort_ascending")
 		var current = open_list.pop_front()
+		closed_list.append(current)
 		if current.position == end:
-			closed_list.append(current)
 			return closed_list
 		var neighbours = get_neighbours(current, end)
 		for n in neighbours:
 			var ignore = false
 			for i in range(0, open_list.size()):
 				if n.position == open_list[i].position:
-					if open_list[i].f <= n.f:
+					if open_list[i].g <= n.g:
 						ignore = true
 			for j in range(0, closed_list.size()):
 				if n.position == closed_list[j].position:
-					if closed_list[j].f <= n.f:
-						ignore = true
+					ignore = true
 			if not ignore:
 				open_list.append(n)
-		closed_list.append(current)
-	return closed_list	
+	
+	var temp = closed_list.back()
+	if temp.position != end:
+		return []
+		
+	while temp.position != start.position:
+		path.push_front(temp)
+		temp = temp.parent
+	return path
 		
 func get_neighbours(current, end):
 	var neighbours = []
@@ -93,7 +103,7 @@ func get_neighbours(current, end):
 					var neighbour = cells[cell]
 					neighbour.parent = current
 					neighbour.g = current.g + dist
-					neighbour.h = distance(cell, end)
+					neighbour.h = distance_squared(cell, end)
 					neighbour.f = neighbour.g + neighbour.h
 					neighbours.append(neighbour)
 	return neighbours

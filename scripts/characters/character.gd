@@ -3,7 +3,7 @@ extends Node2D
 var green_cell = preload("res://map/CellHighlight.tscn")
 
 var selected = false
-var movement = 10
+var movement = 2
 var current_position;
 var target_position;
 var under_mouse = false;
@@ -24,11 +24,12 @@ onready var character_sprite = get_node("CharacterSprite")
 func _ready():
 	add_to_group("characters")
 	current_position = Grid.world_to_map(global_position)
+	global_position = Grid.map_to_world_fixed(current_position)
 	
 func _process(delta):
 	check_under_mouse()
 	if moving:
-		if in_range():
+		if in_range(delta):
 			movement_vec = Vector2(0,0)
 			if next_cell == final_cell:
 				moving = false
@@ -44,9 +45,11 @@ func go_to_next_cell():
 	character_sprite.look_at(Grid.map_to_world_fixed(next_cell))
 	character_sprite.rotate(deg2rad(-90))
 	
-func in_range():
+func in_range(delta):
+	if(movement_vec.length_squared() == 0):
+		return true
 	var offset = Grid.map_to_world_fixed(next_cell) - global_position
-	if offset.length() < 10:
+	if offset.length_squared() < 2 * (movement_vec * move_speed * delta).length_squared():
 		set_global_position(Grid.map_to_world_fixed(next_cell))
 		current_position = next_cell
 		return true
@@ -72,6 +75,7 @@ func act():
 	cancel()
 	
 func move_to(cell):
+	path = []
 	final_cell = cell
 	path = Grid.get_movement_path(current_position, target_position)
 	go_to_next_cell()
