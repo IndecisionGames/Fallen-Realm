@@ -18,9 +18,12 @@ var moving = false
 
 var path
 
+signal on_select
+signal on_deselect
+
 onready var Grid = get_node("/root/Game/Map/Grid")
 onready var character_sprite = get_node("CharacterSprite")
-onready var positionDebugText = get_node("/root/Game/CanvasLayer/UI/PositionDebug")
+onready var character_panel = get_node("/root/Game/CanvasLayer/UI/CharacterPanel")
 
 func _ready():
 	add_to_group("characters")
@@ -61,7 +64,8 @@ func select():
 	global_cancel_origin = true
 	get_tree().call_group("characters", "cancel")
 	highlight_reachable_cells()
-	positionDebugText.text = String(current_position.x) + ", " + String(current_position.y)
+	update_character_panel()
+
 
 func cancel():
 	if not global_cancel_origin:
@@ -75,7 +79,7 @@ func act():
 	if valid_movement_target(target_position):
 		move_to(target_position)
 	cancel()
-	positionDebugText.text = ""
+	emit_signal("on_deselect")
 	
 	
 func move_to(cell):
@@ -119,4 +123,8 @@ func valid_movement_target(target):
 		if target == cell_position:
 			return true
 	return false
+	
+func update_character_panel():
+	character_panel.update_panel(current_position, move_speed)
+	emit_signal("on_select")
 

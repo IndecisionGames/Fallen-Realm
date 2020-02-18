@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://map/grid_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/Camera2D.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scripts/map/Grid.gd" type="Script" id=4]
 [ext_resource path="res://characters/character.tscn" type="PackedScene" id=5]
 [ext_resource path="res://map/terrain_tileset.tres" type="TileSet" id=6]
+[ext_resource path="res://CharacterPanel.gd" type="Script" id=7]
 
 [node name="Game" type="Node2D"]
 
@@ -156,11 +157,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PositionDebug" type="RichTextLabel" parent="CanvasLayer/UI"]
-margin_left = -580.843
-margin_top = -284.59
-margin_right = -420.843
-margin_bottom = -187.59
+[node name="CharacterPanel" type="Panel" parent="CanvasLayer/UI"]
+margin_left = 282.877
+margin_top = 219.083
+margin_right = 682.877
+margin_bottom = 419.083
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Position" type="RichTextLabel" parent="CanvasLayer/UI/CharacterPanel"]
+margin_left = 17.0
+margin_top = 9.0
+margin_right = 177.0
+margin_bottom = 41.0
+text = "PLACEHOLDER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Speed" type="RichTextLabel" parent="CanvasLayer/UI/CharacterPanel"]
+margin_left = 14.8948
+margin_top = 34.2631
+margin_right = 174.895
+margin_bottom = 66.2631
+text = "PLACEHOLDER"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -186,3 +208,5 @@ z_index = 2
 [connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/UpRight" to="Camera2D" method="_on_UpRight_mouse_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/DownRight" to="Camera2D" method="_on_DownRight_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/DownRight" to="Camera2D" method="_on_DownRight_mouse_exited"]
+[connection signal="on_deselect" from="Characters/Character" to="CanvasLayer/UI/CharacterPanel" method="_on_Character_on_deselect"]
+[connection signal="on_select" from="Characters/Character" to="CanvasLayer/UI/CharacterPanel" method="_on_Character_on_select"]
