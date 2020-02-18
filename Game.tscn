@@ -156,6 +156,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="PositionDebug" type="RichTextLabel" parent="CanvasLayer/UI"]
+margin_left = -580.843
+margin_top = -284.59
+margin_right = -420.843
+margin_bottom = -187.59
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Characters" type="Node" parent="."]
 
 [node name="Character" parent="Characters" instance=ExtResource( 5 )]

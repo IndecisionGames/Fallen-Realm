@@ -20,6 +20,7 @@ var path
 
 onready var Grid = get_node("/root/Game/Map/Grid")
 onready var character_sprite = get_node("CharacterSprite")
+onready var positionDebugText = get_node("/root/Game/CanvasLayer/UI/PositionDebug")
 
 func _ready():
 	add_to_group("characters")
@@ -60,6 +61,7 @@ func select():
 	global_cancel_origin = true
 	get_tree().call_group("characters", "cancel")
 	highlight_reachable_cells()
+	positionDebugText.text = String(current_position.x) + ", " + String(current_position.y)
 
 func cancel():
 	if not global_cancel_origin:
@@ -73,6 +75,8 @@ func act():
 	if valid_movement_target(target_position):
 		move_to(target_position)
 	cancel()
+	positionDebugText.text = ""
+	
 	
 func move_to(cell):
 	path = []
