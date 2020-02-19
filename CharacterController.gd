@@ -3,7 +3,7 @@ extends Node2D
 enum Turn {ally, enemy}
 var green_cell = preload("res://map/CellHighlight.tscn")
 onready var grid = get_node("/root/Game/Map/Grid")
-onready var character_panel = get_node("/root/Game/CanvasLayer/UI/CharacterPanel")
+onready var character_panel = get_node("/root/Game/CanvasLayer/CharacterPanel")
 onready var test_character = get_node("Character") # temp
 
 var allies = []
@@ -12,6 +12,9 @@ var highlighted_cells = []
 var selected
 var selected_is_ally
 var turn
+
+signal on_select
+signal on_deselect
 
 func _ready():
 	selected = null
@@ -24,6 +27,9 @@ func _ready():
 func _process(_delta):
 	if selected != null and selected_is_ally == true and turn == Turn.ally and selected.moving == false and highlighted_cells.empty():
 		highlight_reachable_cells()
+		
+	# TODO: this should be triggered by some master game controller which emits an event that the turn is over
+	# in this trigggered function it could get the turn state by calling some function in the master game controller
 	if Input.is_action_just_pressed("end_turn"):
 		change_turn()
 	# TAB - cycle between all allies
@@ -40,23 +46,20 @@ func _input(event):
 				var enemy = get_enemy_in_cell(cell)
 				if ally != null or enemy != null:
 					if selected != null and selected.current_position != cell:
-						selected.deselect()
-						clear_highlighted_cells()
+						clear_selected()
 					if ally != null:
 						ally.select()
 						selected = ally
 						selected_is_ally = true
 						if turn == Turn.ally:
 							highlight_reachable_cells()
-						# todo - show friendly panel
 					else:
 						selected = enemy
 						selected_is_ally = false
-						# todo - show enemy panel
+					update_character_panel()
+
 				elif selected != null:
-						selected.deselect()
-						clear_highlighted_cells()
-						selected = null
+					clear_selected()
 				
 			if event.button_index == BUTTON_RIGHT:
 				if turn == Turn.ally:
@@ -116,8 +119,15 @@ func clear_highlighted_cells():
 	for n in highlighted_cells:
 		n.queue_free()
 	highlighted_cells.clear()
+	
+func clear_selected():
+	selected.deselect()
+	clear_highlighted_cells()
+	selected = null
+	emit_signal("on_deselect")
+	
 
-#func update_character_panel():
-#	character_panel.update_panel(current_position, move_speed)
-#	emit_signal("on_select")
+func update_character_panel():
+	character_panel.update_panel(selected.current_position, selected.move_speed)
+	emit_signal("on_select")
 
