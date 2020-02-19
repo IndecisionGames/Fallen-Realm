@@ -25,6 +25,7 @@ func _ready():
 	global_position = Grid.map_to_world_fixed(current_position)
 	
 func _process(delta):
+	print(remaining_movement)
 	if moving:
 		if in_range(delta):
 			movement_vec = Vector2(0,0)
@@ -49,6 +50,7 @@ func in_range(delta):
 	if offset.length_squared() < 2 * (movement_vec * move_speed * delta).length_squared():
 		set_global_position(Grid.map_to_world_fixed(next_cell))
 		current_position = next_cell
+		remaining_movement -= 1
 		return true
 	return false
 	

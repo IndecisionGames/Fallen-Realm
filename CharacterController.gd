@@ -22,6 +22,8 @@ func _ready():
 	allies.append(test_character)
 
 func _process(_delta):
+	if selected != null and selected_is_ally == true and turn == Turn.ally and selected.moving == false and highlighted_cells.empty():
+		highlight_reachable_cells()
 	if Input.is_action_just_pressed("end_turn"):
 		change_turn()
 	# TAB - cycle between all allies
@@ -89,7 +91,7 @@ func change_turn():
 		for ally in allies:
 			ally.next_turn()
 	print(turn)
-		
+
 func highlight_reachable_cells():
 	for i in range(-selected.remaining_movement, selected.remaining_movement+1):
 		for j in range(-selected.remaining_movement, selected.remaining_movement+1):
