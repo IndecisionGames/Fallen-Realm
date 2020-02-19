@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://map/grid_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/Camera2D.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://characters/character.tscn" type="PackedScene" id=5]
 [ext_resource path="res://map/terrain_tileset.tres" type="TileSet" id=6]
 [ext_resource path="res://CharacterPanel.gd" type="Script" id=7]
+[ext_resource path="res://CharacterController.gd" type="Script" id=8]
 
 [node name="Game" type="Node2D"]
 
@@ -187,9 +188,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Characters" type="Node" parent="."]
+[node name="CharacterController" type="Node2D" parent="."]
+script = ExtResource( 8 )
 
-[node name="Character" parent="Characters" instance=ExtResource( 5 )]
+[node name="Character" parent="CharacterController" instance=ExtResource( 5 )]
 position = Vector2( 630, 340 )
 z_index = 2
 [connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/Left" to="Camera2D" method="_on_Left_mouse_entered"]
@@ -208,5 +210,5 @@ z_index = 2
 [connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/UpRight" to="Camera2D" method="_on_UpRight_mouse_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/DownRight" to="Camera2D" method="_on_DownRight_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/DownRight" to="Camera2D" method="_on_DownRight_mouse_exited"]
-[connection signal="on_deselect" from="Characters/Character" to="CanvasLayer/UI/CharacterPanel" method="_on_Character_on_deselect"]
-[connection signal="on_select" from="Characters/Character" to="CanvasLayer/UI/CharacterPanel" method="_on_Character_on_select"]
+[connection signal="on_deselect" from="CharacterController/Character" to="CanvasLayer/UI/CharacterPanel" method="_on_Character_on_deselect"]
+[connection signal="on_select" from="CharacterController/Character" to="CanvasLayer/UI/CharacterPanel" method="_on_Character_on_select"]
