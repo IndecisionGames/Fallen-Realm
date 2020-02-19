@@ -23,7 +23,7 @@ signal on_deselect
 
 onready var Grid = get_node("/root/Game/Map/Grid")
 onready var character_sprite = get_node("CharacterSprite")
-onready var character_panel = get_node("/root/Game/CanvasLayer/UI/CharacterPanel")
+onready var character_panel = get_node("/root/Game/CanvasLayer/CharacterPanel")
 
 func _ready():
 	add_to_group("characters")
