@@ -7,7 +7,7 @@
 [ext_resource path="res://characters/character.tscn" type="PackedScene" id=5]
 [ext_resource path="res://map/terrain_tileset.tres" type="TileSet" id=6]
 [ext_resource path="res://scripts/character_panel.gd" type="Script" id=7]
-[ext_resource path="res://CharacterController.gd" type="Script" id=8]
+[ext_resource path="res://scripts/CharacterController.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/font/Comfortaa-Bold.ttf"
@@ -178,10 +178,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/CharacterPanel"]
+[node name="Background" type="ColorRect" parent="CanvasLayer/CharacterPanel"]
 margin_right = 392.0
 margin_bottom = 177.0
-color = Color( 0.215686, 0.215686, 0.215686, 1 )
+color = Color( 0.290196, 0.0862745, 0.0862745, 1 )
 
 [node name="Rows" type="VBoxContainer" parent="CanvasLayer/CharacterPanel"]
 margin_right = 392.0
@@ -209,6 +209,10 @@ script = ExtResource( 8 )
 [node name="Character" parent="CharacterController" instance=ExtResource( 5 )]
 position = Vector2( 630, 340 )
 z_index = 2
+
+[node name="Character_T2" parent="CharacterController" instance=ExtResource( 5 )]
+position = Vector2( 1017.37, 336.842 )
+z_index = 2
 [connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/Left" to="Camera2D" method="_on_Left_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/Left" to="Camera2D" method="_on_Left_mouse_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/Up" to="Camera2D" method="_on_Up_mouse_entered"]
@@ -229,3 +233,5 @@ z_index = 2
 [connection signal="on_select" from="CharacterController" to="CanvasLayer/CharacterPanel" method="_on_CharacterController_on_select"]
 [connection signal="on_deselect" from="CharacterController/Character" to="CanvasLayer/CharacterPanel" method="_on_Character_on_deselect"]
 [connection signal="on_select" from="CharacterController/Character" to="CanvasLayer/CharacterPanel" method="_on_Character_on_select"]
+[connection signal="on_deselect" from="CharacterController/Character_T2" to="CanvasLayer/CharacterPanel" method="_on_Character_on_deselect"]
+[connection signal="on_select" from="CharacterController/Character_T2" to="CanvasLayer/CharacterPanel" method="_on_Character_on_select"]

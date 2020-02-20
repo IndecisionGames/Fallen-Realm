@@ -1,7 +1,5 @@
 extends CharacterBase
 
-var selected = false
-var under_mouse = true;
 
 func _ready():
 	self.move_range = 2
