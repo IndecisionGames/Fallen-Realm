@@ -1,10 +1,10 @@
 extends Node2D
 class_name CharacterBase
 
-var move_range = 3
-var attach_range = 1
-var attach_damage = 10
-var health_points = 100
+var move_range
+var attach_range
+var attach_damage
+var health_points
 
 var current_position;
 var moving = false
@@ -15,13 +15,16 @@ var next_cell;
 var final_cell;
 var cells_passed = 0;
 var path
-var remaining_movement = move_range
+var remaining_movement
 
 signal on_select
 signal on_deselect
 
 onready var grid
 onready var character_sprite
+
+func _ready():
+	remaining_movement = move_range
 
 func _process(delta):
 	if moving:

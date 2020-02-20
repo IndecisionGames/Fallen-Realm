@@ -2,7 +2,7 @@ extends CharacterBase
 
 
 func _ready():
-	self.move_range = 3
+	self.move_range = 2
 	self.attach_range = 1
 	self.attach_damage = 10
 	self.health_points = 100
@@ -12,3 +12,5 @@ func _ready():
 	
 	self.current_position = grid.world_to_map(global_position)
 	global_position = grid.map_to_world_fixed(current_position)
+	
+	._ready()
