@@ -38,7 +38,6 @@ func _process(_delta):
 		highlight_reachable_cells()
 		
 	# Show path to highlighted cell being hovered
-	print(movement_indicators.size())
 	if selected != null:
 		if selected.moving == false:
 			update_movement_indicators()
@@ -111,7 +110,6 @@ func change_turn():
 		turn = Turn.blue
 		for blue_team in blue_team_units:
 			blue_team.next_turn()
-	print(turn)
 
 func highlight_reachable_cells():
 	for i in range(-selected.remaining_movement, selected.remaining_movement+1):
@@ -170,7 +168,6 @@ func update_movement_indicators():
 		clear_movement_indicators()
 
 func clear_movement_indicators_behind_player():
-	print("called")
 	if selected.cells_passed != selected_cells_passed:
 		movement_indicators.pop_front().queue_free()
 		movement_indicators.pop_front().queue_free()

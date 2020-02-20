@@ -24,7 +24,6 @@ onready var grid
 onready var character_sprite
 
 func _process(delta):
-	print(remaining_movement)
 	if moving:
 		if in_range(delta):
 			movement_vec = Vector2(0,0)
