@@ -2,7 +2,7 @@ extends CharacterBase
 
 
 func _ready():
-	self.move_range = 2
+	self.move_range = 3
 	self.attach_range = 1
 	self.attach_damage = 10
 	self.health_points = 100

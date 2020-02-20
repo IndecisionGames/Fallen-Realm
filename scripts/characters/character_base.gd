@@ -1,7 +1,7 @@
 extends Node2D
 class_name CharacterBase
 
-var move_range = 2
+var move_range = 3
 var attach_range = 1
 var attach_damage = 10
 var health_points = 100
@@ -13,6 +13,7 @@ var move_speed = 300
 var movement_vec = Vector2(0,0)
 var next_cell;
 var final_cell;
+var cells_passed = 0;
 var path
 var remaining_movement = move_range
 
@@ -52,15 +53,16 @@ func in_range(delta):
 	return false
 
 func go_to_next_cell():
+	cells_passed += 1
 	next_cell = path.pop_front().position
 	movement_vec = (grid.map_to_world_fixed(next_cell) - grid.map_to_world_fixed(current_position)).normalized()
 	character_sprite.look_at(grid.map_to_world_fixed(next_cell))
 	character_sprite.rotate(deg2rad(-90))
 
-func move_to(cell):
-	path = []
+func move_to(cell, path_to_cell):
+	path = path_to_cell
 	final_cell = cell
-	path = grid.get_movement_path(current_position, final_cell)
+	cells_passed = 0
 	go_to_next_cell()
 	moving = true
 	
