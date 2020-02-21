@@ -5,8 +5,8 @@ var movement_indicator = preload("res://map/movement_indicator.tscn")
 onready var grid = get_node("/root/Game/Map/Grid")
 onready var character_panel = get_node("/root/Game/CanvasLayer/CharacterPanel")
 
-onready var test_character = get_node("Character") # temp
-onready var test_character2 = get_node("Character_T2") # temp
+onready var blue_characters = get_node("BlueTeam")
+onready var red_characters = get_node("RedTeam")
 
 var blue_team_units = []
 var red_team_units = []
@@ -28,10 +28,13 @@ func _ready():
 	selected = null
 	selected_is_current_team = null
 	turn = Turn.blue
-	# TODO - populate blue_team_units and red_team_units - create 2 children nodes (blue_team_units and red_team_units) and put characters under them
-	# for now adding a test character
-	blue_team_units.append(test_character)
-	red_team_units.append(test_character2)
+	for blue in blue_characters.get_children():
+		blue.change_to_blue()
+		blue_team_units.append(blue)
+		
+	for red in red_characters.get_children():
+		red.change_to_red()
+		red_team_units.append(red)
 
 func _process(_delta):
 	if selected != null and selected_is_current_team == true and selected.moving == false and highlighted_cells.empty():
@@ -91,14 +94,16 @@ func execute_action(target_position):
 
 func get_blue_unit_in_cell(cell):
 	for blue_team in blue_team_units:
-		if blue_team.current_position == cell:
-			return blue_team
+		if blue_team != null:
+			if blue_team.current_position == cell:
+				return blue_team
 	return null
 	
 func get_red_unit_in_cell(cell):
 	for red_team in red_team_units:
-		if red_team.current_position == cell:
-			return red_team
+		if red_team != null:
+			if red_team.current_position == cell:
+				return red_team
 	return null
 	
 func change_turn():

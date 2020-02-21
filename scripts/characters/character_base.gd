@@ -22,6 +22,14 @@ signal on_deselect
 
 onready var grid
 onready var character_sprite
+onready var banner
+
+onready var banner_texture
+onready var banner_selected_texture
+onready var blue_banner_texture
+onready var blue_banner_selected_texture
+onready var red_banner_texture
+onready var red_banner_selected_texture
 
 func _ready():
 	remaining_movement = move_range
@@ -38,10 +46,10 @@ func _process(delta):
 			set_global_position(get_global_position() + movement_vec * move_speed * delta)
 
 func select():
-	pass # could do something here
+	banner.set_texture(banner_selected_texture)
 
 func deselect():
-	pass # could do something here
+	banner.set_texture(banner_texture)
 
 func in_range(delta):
 	if(movement_vec.length_squared() == 0):
@@ -70,3 +78,13 @@ func move_to(cell, path_to_cell):
 	
 func next_turn():
 	remaining_movement = move_range
+	
+func change_to_blue():
+	banner_texture = blue_banner_texture
+	banner_selected_texture = blue_banner_selected_texture
+	banner.set_texture(banner_texture)
+	
+func change_to_red():
+	banner_texture = red_banner_texture
+	banner_selected_texture = red_banner_selected_texture
+	banner.set_texture(banner_texture)

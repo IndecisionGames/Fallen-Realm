@@ -206,12 +206,24 @@ text = "Speed"
 [node name="CharacterController" type="Node2D" parent="."]
 script = ExtResource( 8 )
 
-[node name="Character" parent="CharacterController" instance=ExtResource( 5 )]
-position = Vector2( 630, 340 )
+[node name="BlueTeam" type="Node2D" parent="CharacterController"]
+
+[node name="Soldier1" parent="CharacterController/BlueTeam" instance=ExtResource( 5 )]
+position = Vector2( 310, 250 )
 z_index = 2
 
-[node name="Character_T2" parent="CharacterController" instance=ExtResource( 5 )]
-position = Vector2( 1017.37, 336.842 )
+[node name="Soldier2" parent="CharacterController/BlueTeam" instance=ExtResource( 5 )]
+position = Vector2( 380, 540 )
+z_index = 2
+
+[node name="RedTeam" type="Node2D" parent="CharacterController"]
+
+[node name="Soldier1" parent="CharacterController/RedTeam" instance=ExtResource( 5 )]
+position = Vector2( 950, 250 )
+z_index = 2
+
+[node name="Soldier2" parent="CharacterController/RedTeam" instance=ExtResource( 5 )]
+position = Vector2( 1080, 440 )
 z_index = 2
 [connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/Left" to="Camera2D" method="_on_Left_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/Left" to="Camera2D" method="_on_Left_mouse_exited"]
@@ -231,7 +243,11 @@ z_index = 2
 [connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/DownRight" to="Camera2D" method="_on_DownRight_mouse_exited"]
 [connection signal="on_deselect" from="CharacterController" to="CanvasLayer/CharacterPanel" method="_on_CharacterController_on_deselect"]
 [connection signal="on_select" from="CharacterController" to="CanvasLayer/CharacterPanel" method="_on_CharacterController_on_select"]
-[connection signal="on_deselect" from="CharacterController/Character" to="CanvasLayer/CharacterPanel" method="_on_Character_on_deselect"]
-[connection signal="on_select" from="CharacterController/Character" to="CanvasLayer/CharacterPanel" method="_on_Character_on_select"]
-[connection signal="on_deselect" from="CharacterController/Character_T2" to="CanvasLayer/CharacterPanel" method="_on_Character_on_deselect"]
-[connection signal="on_select" from="CharacterController/Character_T2" to="CanvasLayer/CharacterPanel" method="_on_Character_on_select"]
+[connection signal="on_deselect" from="CharacterController/BlueTeam/Soldier1" to="CanvasLayer/CharacterPanel" method="_on_Character_on_deselect"]
+[connection signal="on_select" from="CharacterController/BlueTeam/Soldier1" to="CanvasLayer/CharacterPanel" method="_on_Character_on_select"]
+[connection signal="on_deselect" from="CharacterController/BlueTeam/Soldier2" to="CanvasLayer/CharacterPanel" method="_on_Character_on_deselect"]
+[connection signal="on_select" from="CharacterController/BlueTeam/Soldier2" to="CanvasLayer/CharacterPanel" method="_on_Character_on_select"]
+[connection signal="on_deselect" from="CharacterController/RedTeam/Soldier1" to="CanvasLayer/CharacterPanel" method="_on_Character_on_deselect"]
+[connection signal="on_select" from="CharacterController/RedTeam/Soldier1" to="CanvasLayer/CharacterPanel" method="_on_Character_on_select"]
+[connection signal="on_deselect" from="CharacterController/RedTeam/Soldier2" to="CanvasLayer/CharacterPanel" method="_on_Character_on_deselect"]
+[connection signal="on_select" from="CharacterController/RedTeam/Soldier2" to="CanvasLayer/CharacterPanel" method="_on_Character_on_select"]
