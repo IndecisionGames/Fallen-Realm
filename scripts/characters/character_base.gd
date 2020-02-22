@@ -2,8 +2,8 @@ extends Node2D
 class_name CharacterBase
 
 var move_range
-var attach_range
-var attach_damage
+var attack_range
+var attack_damage
 var health_points
 
 var current_position;

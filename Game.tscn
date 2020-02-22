@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://map/grid_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/Camera2D.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://map/terrain_tileset.tres" type="TileSet" id=6]
 [ext_resource path="res://scripts/character_panel.gd" type="Script" id=7]
 [ext_resource path="res://scripts/CharacterController.gd" type="Script" id=8]
+[ext_resource path="res://scripts/characters/character_ranged.gd" type="Script" id=9]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/font/Comfortaa-Bold.ttf"
@@ -212,9 +213,10 @@ script = ExtResource( 8 )
 position = Vector2( 310, 250 )
 z_index = 2
 
-[node name="Soldier2" parent="CharacterController/BlueTeam" instance=ExtResource( 5 )]
+[node name="Hunter1" parent="CharacterController/BlueTeam" instance=ExtResource( 5 )]
 position = Vector2( 380, 540 )
 z_index = 2
+script = ExtResource( 9 )
 
 [node name="RedTeam" type="Node2D" parent="CharacterController"]
 
@@ -222,9 +224,10 @@ z_index = 2
 position = Vector2( 950, 250 )
 z_index = 2
 
-[node name="Soldier2" parent="CharacterController/RedTeam" instance=ExtResource( 5 )]
+[node name="Hunter1" parent="CharacterController/RedTeam" instance=ExtResource( 5 )]
 position = Vector2( 1080, 440 )
 z_index = 2
+script = ExtResource( 9 )
 [connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/Left" to="Camera2D" method="_on_Left_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/UI/MouseBorder/Left" to="Camera2D" method="_on_Left_mouse_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/UI/MouseBorder/Up" to="Camera2D" method="_on_Up_mouse_entered"]
@@ -245,9 +248,9 @@ z_index = 2
 [connection signal="on_select" from="CharacterController" to="CanvasLayer/CharacterPanel" method="_on_CharacterController_on_select"]
 [connection signal="on_deselect" from="CharacterController/BlueTeam/Soldier1" to="CanvasLayer/CharacterPanel" method="_on_Character_on_deselect"]
 [connection signal="on_select" from="CharacterController/BlueTeam/Soldier1" to="CanvasLayer/CharacterPanel" method="_on_Character_on_select"]
-[connection signal="on_deselect" from="CharacterController/BlueTeam/Soldier2" to="CanvasLayer/CharacterPanel" method="_on_Character_on_deselect"]
-[connection signal="on_select" from="CharacterController/BlueTeam/Soldier2" to="CanvasLayer/CharacterPanel" method="_on_Character_on_select"]
+[connection signal="on_deselect" from="CharacterController/BlueTeam/Hunter1" to="CanvasLayer/CharacterPanel" method="_on_Character_on_deselect"]
+[connection signal="on_select" from="CharacterController/BlueTeam/Hunter1" to="CanvasLayer/CharacterPanel" method="_on_Character_on_select"]
 [connection signal="on_deselect" from="CharacterController/RedTeam/Soldier1" to="CanvasLayer/CharacterPanel" method="_on_Character_on_deselect"]
 [connection signal="on_select" from="CharacterController/RedTeam/Soldier1" to="CanvasLayer/CharacterPanel" method="_on_Character_on_select"]
-[connection signal="on_deselect" from="CharacterController/RedTeam/Soldier2" to="CanvasLayer/CharacterPanel" method="_on_Character_on_deselect"]
-[connection signal="on_select" from="CharacterController/RedTeam/Soldier2" to="CanvasLayer/CharacterPanel" method="_on_Character_on_select"]
+[connection signal="on_deselect" from="CharacterController/RedTeam/Hunter1" to="CanvasLayer/CharacterPanel" method="_on_Character_on_deselect"]
+[connection signal="on_select" from="CharacterController/RedTeam/Hunter1" to="CanvasLayer/CharacterPanel" method="_on_Character_on_select"]
