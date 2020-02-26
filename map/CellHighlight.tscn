@@ -5,4 +5,3 @@
 [node name="CellHighlight" type="Sprite"]
 z_index = -1
 texture = ExtResource( 1 )
-offset = Vector2( 0, 16 )

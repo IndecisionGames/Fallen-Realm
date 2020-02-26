@@ -174,8 +174,10 @@ func update_movement_indicators():
 
 func clear_movement_indicators_behind_player():
 	if selected.cells_passed != selected_cells_passed:
-		movement_indicators.pop_front().queue_free()
-		movement_indicators.pop_front().queue_free()
+		for i in range(2):
+			var t = movement_indicators.pop_front()
+			if t != null:
+				t.queue_free()
 		selected_cells_passed = selected.cells_passed	
 	
 func clear_highlighted_cells():

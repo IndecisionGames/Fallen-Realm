@@ -8,10 +8,9 @@
 script = ExtResource( 1 )
 
 [node name="CharacterSprite" type="Sprite" parent="."]
-position = Vector2( 0, 0.24217 )
+position = Vector2( 0, -2.98023e-08 )
 scale = Vector2( 0.78125, 0.851563 )
 texture = ExtResource( 2 )
-offset = Vector2( 0, 5 )
 
 [node name="Banner" type="Sprite" parent="."]
 position = Vector2( 0, -70 )

@@ -4,4 +4,3 @@
 
 [node name="HoverCellHighlight" type="Sprite"]
 texture = ExtResource( 1 )
-offset = Vector2( 0, 16 )

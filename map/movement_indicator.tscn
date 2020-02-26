@@ -5,4 +5,3 @@
 [node name="Node2D" type="Sprite"]
 scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 1 )
-offset = Vector2( 0, 21.333 )
