@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/knight_banner_blue.png-60575ac2802a0abc5202edece1de4f29.stex"
+path="res://.import/knight-walk2.png-1a6f9d5bbe26e2a3a8a95878ddcf0718.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/knight_banner_blue.png"
-dest_files=[ "res://.import/knight_banner_blue.png-60575ac2802a0abc5202edece1de4f29.stex" ]
+source_file="res://characters/knight/walk/knight-walk2.png"
+dest_files=[ "res://.import/knight-walk2.png-1a6f9d5bbe26e2a3a8a95878ddcf0718.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

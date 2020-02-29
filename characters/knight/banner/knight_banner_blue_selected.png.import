@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/knight_banner_red_selected.png-10da49341615088643209c7814ecf6c5.stex"
+path="res://.import/knight_banner_blue_selected.png-e306d4802756f31594ae2900fc8f05ab.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/knight_banner_red_selected.png"
-dest_files=[ "res://.import/knight_banner_red_selected.png-10da49341615088643209c7814ecf6c5.stex" ]
+source_file="res://characters/knight/banner/knight_banner_blue_selected.png"
+dest_files=[ "res://.import/knight_banner_blue_selected.png-e306d4802756f31594ae2900fc8f05ab.stex" ]
 
 [params]
 

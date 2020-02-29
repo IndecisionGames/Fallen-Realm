@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hunter-128.png-2467c5e7da895a5e610d881646e1d5e6.stex"
+path="res://.import/knight.png-1b39f732a93ab15f85375453b2df1d97.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/hunter-128.png"
-dest_files=[ "res://.import/hunter-128.png-2467c5e7da895a5e610d881646e1d5e6.stex" ]
+source_file="res://characters/knight/knight.png"
+dest_files=[ "res://.import/knight.png-1b39f732a93ab15f85375453b2df1d97.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

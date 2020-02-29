@@ -223,7 +223,7 @@ script = ExtResource( 9 )
 [node name="RedTeam" type="Node2D" parent="CharacterController"]
 
 [node name="Soldier1" parent="CharacterController/RedTeam" instance=ExtResource( 5 )]
-position = Vector2( 950, 250 )
+position = Vector2( 950, 247 )
 z_index = 2
 
 [node name="Hunter1" parent="CharacterController/RedTeam" instance=ExtResource( 5 )]

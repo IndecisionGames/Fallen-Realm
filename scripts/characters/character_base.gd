@@ -9,7 +9,7 @@ var health_points
 var current_position;
 var moving = false
 
-var move_speed = 300
+var move_speed = 200
 var movement_vec = Vector2(0,0)
 var next_cell;
 var final_cell;
@@ -40,6 +40,8 @@ func _process(delta):
 			movement_vec = Vector2(0,0)
 			if next_cell == final_cell:
 				moving = false
+				character_sprite.stop()
+				character_sprite.set_animation("default")
 			else:
 				go_to_next_cell()
 		else:
@@ -66,8 +68,12 @@ func go_to_next_cell():
 	cells_passed += 1
 	next_cell = path.pop_front().position
 	movement_vec = (grid.map_to_world_fixed(next_cell) - grid.map_to_world_fixed(current_position)).normalized()
-	character_sprite.look_at(grid.map_to_world_fixed(next_cell))
-	character_sprite.rotate(deg2rad(-90))
+	if movement_vec.x < 0:
+		# face left
+		character_sprite.set_flip_h(true)
+	elif movement_vec.x > 0:
+		# face right
+		character_sprite.set_flip_h(false)
 
 func move_to(cell, path_to_cell):
 	path = path_to_cell
@@ -75,6 +81,7 @@ func move_to(cell, path_to_cell):
 	cells_passed = 0
 	go_to_next_cell()
 	moving = true
+	character_sprite.play("walk")
 	
 func next_turn():
 	remaining_movement = move_range

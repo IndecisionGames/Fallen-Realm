@@ -1,0 +1,20 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=2]
+
+[ext_resource path="res://characters/knight/walk/knight-walk1.png" type="Texture" id=1]
+[ext_resource path="res://characters/knight/walk/knight-walk2.png" type="Texture" id=2]
+[ext_resource path="res://characters/knight/knight.png" type="Texture" id=3]
+[ext_resource path="res://characters/knight/walk/knight-walk3.png" type="Texture" id=4]
+[ext_resource path="res://characters/knight/walk/knight-walk4.png" type="Texture" id=5]
+
+[resource]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "walk",
+"speed": 6.0
+} ]
