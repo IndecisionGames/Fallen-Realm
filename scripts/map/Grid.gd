@@ -33,7 +33,6 @@ func hightlight_cell(highlight_type, cell):
 	highlight_type.set_visible(true)
 
 func map_to_world_fixed(coords):
-	print(cell_size)
 	return map_to_world(coords, false) + (cell_size / 2)
 	
 func distance(cell1, cell2):

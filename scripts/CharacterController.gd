@@ -151,24 +151,23 @@ func update_movement_indicators():
 		var previous = selected.current_position
 		
 		for p in path:
-			var indicator_location_1 = (grid.map_to_world_fixed(previous) + grid.map_to_world_fixed(p.position)) / 2
-			var indicator_location_2 = grid.map_to_world_fixed(p.position)
-			previous = p.position
-			var indicator1 = movement_indicator.instance()
-			var indicator2 = movement_indicator.instance()
-			indicator1.z_as_relative = false
-			indicator1.z_index = -1
-			indicator2.z_as_relative = false
-			indicator2.z_index = -1
-			if path.back() == p:
-				indicator2.global_scale *= 2
-				indicator2.offset.y /= 2
-			movement_indicators.append(indicator1)
-			movement_indicators.append(indicator2)
-			indicator1.global_position = indicator_location_1
-			indicator2.global_position = indicator_location_2
-			add_child(indicator1)
-			add_child(indicator2)
+			if path.back() != p:
+				var indicator_location_1 = (grid.map_to_world_fixed(previous) + grid.map_to_world_fixed(p.position)) / 2
+				var indicator_location_2 = grid.map_to_world_fixed(p.position)
+				previous = p.position
+				var indicator1 = movement_indicator.instance()
+				var indicator2 = movement_indicator.instance()
+				indicator1.z_as_relative = false
+				indicator1.z_index = -1
+				indicator2.z_as_relative = false
+				indicator2.z_index = -1
+				
+				movement_indicators.append(indicator1)
+				movement_indicators.append(indicator2)
+				indicator1.global_position = indicator_location_1
+				indicator2.global_position = indicator_location_2
+				add_child(indicator1)
+				add_child(indicator2)
 	else:
 		clear_movement_indicators()
 
