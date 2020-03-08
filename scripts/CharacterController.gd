@@ -195,6 +195,7 @@ func update_character_panel():
 
 
 func _on_TurnManager_on_turn_change(turn_team, turn_num):
+	clear_selected()
 	turn = turn_team
 	if turn == Turn.blue:
 		turn = Turn.blue

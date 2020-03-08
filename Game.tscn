@@ -219,9 +219,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 136.0
-margin_top = 94.0
-margin_right = 528.0
+margin_left = 126.0
+margin_top = 91.0
+margin_right = 526.0
 margin_bottom = 271.0
 script = ExtResource( 7 )
 __meta__ = {
@@ -229,29 +229,55 @@ __meta__ = {
 }
 
 [node name="Background" type="ColorRect" parent="CanvasLayer/UI/CharacterPanel"]
-margin_right = 392.0
-margin_bottom = 177.0
+margin_right = 400.0
+margin_bottom = 180.0
 color = Color( 0.388235, 0.0627451, 0.0627451, 1 )
 
 [node name="Rows" type="VBoxContainer" parent="CanvasLayer/UI/CharacterPanel"]
-margin_right = 392.0
-margin_bottom = 177.0
+margin_right = 400.0
+margin_bottom = 180.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Position" type="Label" parent="CanvasLayer/UI/CharacterPanel/Rows"]
-margin_right = 392.0
+margin_right = 400.0
 margin_bottom = 30.0
 custom_fonts/font = SubResource( 2 )
 text = "Position"
 
-[node name="Speed" type="Label" parent="CanvasLayer/UI/CharacterPanel/Rows"]
+[node name="HealthPoints" type="Label" parent="CanvasLayer/UI/CharacterPanel/Rows"]
 margin_top = 34.0
-margin_right = 392.0
+margin_right = 400.0
 margin_bottom = 64.0
 custom_fonts/font = SubResource( 2 )
-text = "Speed"
+text = "Health Points"
+
+[node name="Movement" type="Label" parent="CanvasLayer/UI/CharacterPanel/Rows"]
+margin_top = 68.0
+margin_right = 400.0
+margin_bottom = 98.0
+custom_fonts/font = SubResource( 2 )
+text = "Movement"
+
+[node name="AttackStats" type="HBoxContainer" parent="CanvasLayer/UI/CharacterPanel/Rows"]
+margin_top = 102.0
+margin_right = 400.0
+margin_bottom = 132.0
+grow_horizontal = 2
+
+[node name="Damage" type="Label" parent="CanvasLayer/UI/CharacterPanel/Rows/AttackStats"]
+margin_right = 200.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 2 )
+text = "Movement"
+
+[node name="Range" type="Label" parent="CanvasLayer/UI/CharacterPanel/Rows/AttackStats"]
+margin_left = 200.0
+margin_right = 400.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 2 )
+text = "Movement"
 
 [node name="CharacterController" type="Node2D" parent="."]
 script = ExtResource( 8 )

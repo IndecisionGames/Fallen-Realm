@@ -1,8 +1,13 @@
 extends MarginContainer
 
-onready var position_text = get_node("Rows/Position")
-onready var speed_text = get_node("Rows/Speed")
 onready var background = get_node("Background")
+
+onready var position = get_node("Rows/Position")
+onready var health_points = get_node("Rows/HealthPoints")
+onready var movement = get_node("Rows/Movement")
+
+onready var attack_damage = get_node("Rows/AttackStats/Damage")
+onready var attack_range = get_node("Rows/AttackStats/Range")
 
 enum Turn {blue, red}
 
@@ -10,9 +15,17 @@ enum Turn {blue, red}
 func _ready():
 	visible = false
 
-func update_panel(pos, speed, team):
-	position_text.text = String(pos.x) + ", " + String(pos.y)
-	speed_text.text = "Speed: " + String(speed)
+func update_panel(pos, hp, movement_points, remaing_movement_points, a_damage, a_range, team):
+	
+#var attack_range
+#var attack_damage
+	
+	health_points.text = "HP: %s" % hp
+	position.text = "Position: (%s, %s)" % [pos.x, pos.y]
+	movement.text = "Movement: %s/%s" % [remaing_movement_points, remaing_movement_points]
+	
+	attack_damage.text = "Damage: %s" % a_damage
+	attack_range.text = "Range: %s" % a_range
 
 	if team == Turn.blue:
 		background.color = Color("101e63")
@@ -23,8 +36,8 @@ func _on_CharacterController_on_deselect():
 	visible = false
 
 
-func _on_CharacterController_on_select(character, is_ally):
-	update_panel(character.current_position, character.move_range, is_ally)
+func _on_CharacterController_on_select(character, team):
+	update_panel(character.current_position, character.health_points, character.move_range, character.remaining_movement, character.attack_damage, character.attack_range, team)
 	visible = true
 
 
