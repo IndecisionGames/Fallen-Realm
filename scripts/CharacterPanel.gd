@@ -16,10 +16,6 @@ func _ready():
 	visible = false
 
 func update_panel(pos, hp, movement_points, remaing_movement_points, a_damage, a_range, team):
-	
-#var attack_range
-#var attack_damage
-	
 	health_points.text = "HP: %s" % hp
 	position.text = "Position: (%s, %s)" % [pos.x, pos.y]
 	movement.text = "Movement: %s/%s" % [remaing_movement_points, remaing_movement_points]
@@ -39,7 +35,3 @@ func _on_CharacterController_on_deselect():
 func _on_CharacterController_on_select(character, team):
 	update_panel(character.current_position, character.health_points, character.move_range, character.remaining_movement, character.attack_damage, character.attack_range, team)
 	visible = true
-
-
-func _on_TurnManager_on_turn_change():
-	pass # Replace with function body.

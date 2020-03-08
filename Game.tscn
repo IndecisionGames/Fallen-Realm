@@ -267,17 +267,17 @@ margin_bottom = 132.0
 grow_horizontal = 2
 
 [node name="Damage" type="Label" parent="CanvasLayer/UI/CharacterPanel/Rows/AttackStats"]
-margin_right = 200.0
+margin_right = 105.0
 margin_bottom = 30.0
 custom_fonts/font = SubResource( 2 )
-text = "Movement"
+text = "Damage"
 
 [node name="Range" type="Label" parent="CanvasLayer/UI/CharacterPanel/Rows/AttackStats"]
-margin_left = 200.0
-margin_right = 400.0
+margin_left = 109.0
+margin_right = 187.0
 margin_bottom = 30.0
 custom_fonts/font = SubResource( 2 )
-text = "Movement"
+text = "Range"
 
 [node name="CharacterController" type="Node2D" parent="."]
 script = ExtResource( 8 )
@@ -303,9 +303,8 @@ z_index = 2
 position = Vector2( 1080, 440 )
 z_index = 2
 script = ExtResource( 9 )
-[connection signal="on_turn_change" from="TurnManager" to="CharacterController" method="_on_TurnManager_on_turn_change"]
 [connection signal="on_turn_change" from="TurnManager" to="CanvasLayer/UI/TurnPanel" method="_on_TurnManager_on_turn_change"]
-[connection signal="on_turn_change" from="TurnManager" to="CanvasLayer/UI/CharacterPanel" method="_on_TurnManager_on_turn_change"]
+[connection signal="on_turn_change" from="TurnManager" to="CharacterController" method="_on_TurnManager_on_turn_change"]
 [connection signal="mouse_entered" from="CanvasLayer/MouseBorder/UpLeft" to="Camera2D" method="_on_UpLeft_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/MouseBorder/UpLeft" to="Camera2D" method="_on_UpLeft_mouse_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/MouseBorder/Up" to="Camera2D" method="_on_Up_mouse_entered"]

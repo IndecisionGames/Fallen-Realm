@@ -35,6 +35,9 @@ func _ready():
 	remaining_movement = move_range
 
 func _process(delta):
+	process_movement(delta)
+	
+func process_movement(delta):
 	if moving:
 		if in_range(delta):
 			movement_vec = Vector2(0,0)
@@ -46,12 +49,6 @@ func _process(delta):
 				go_to_next_cell()
 		else:
 			set_global_position(get_global_position() + movement_vec * move_speed * delta)
-
-func select():
-	banner.set_texture(banner_selected_texture)
-
-func deselect():
-	banner.set_texture(banner_texture)
 
 func in_range(delta):
 	if(movement_vec.length_squared() == 0):
@@ -75,6 +72,17 @@ func go_to_next_cell():
 		# face right
 		character_sprite.set_flip_h(false)
 
+
+# Called by Controller
+func select():
+	banner.set_texture(banner_selected_texture)
+
+func deselect():
+	banner.set_texture(banner_texture)
+	
+func new_turn():
+	remaining_movement = move_range
+
 func move_to(cell, path_to_cell):
 	path = path_to_cell
 	final_cell = cell
@@ -83,9 +91,8 @@ func move_to(cell, path_to_cell):
 	moving = true
 	character_sprite.play("walk")
 	
-func new_turn():
-	remaining_movement = move_range
-	
+
+# Setup
 func change_to_blue():
 	banner_texture = blue_banner_texture
 	banner_selected_texture = blue_banner_selected_texture
