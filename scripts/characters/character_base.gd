@@ -83,7 +83,7 @@ func move_to(cell, path_to_cell):
 	moving = true
 	character_sprite.play("walk")
 	
-func next_turn():
+func new_turn():
 	remaining_movement = move_range
 	
 func change_to_blue():

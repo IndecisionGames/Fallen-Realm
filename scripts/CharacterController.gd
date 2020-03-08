@@ -27,7 +27,6 @@ enum Turn {blue, red}
 func _ready():
 	selected = null
 	selected_is_current_team = null
-	turn = Turn.blue
 	for blue in blue_characters.get_children():
 		blue.change_to_blue()
 		blue_team_units.append(blue)
@@ -46,13 +45,6 @@ func _process(_delta):
 			update_movement_indicators()
 		else:
 			clear_movement_indicators_behind_player()
-		
-	# TODO: this should be triggered by some master game controller which emits an  event that the turn is over
-	# in this trigggered function it could get the turn state by calling some function in the master game controller
-	if Input.is_action_just_pressed("end_turn"):
-		change_turn()
-		
-	# TAB - cycle between all blue_team_units
 		
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:
@@ -106,16 +98,7 @@ func get_red_unit_in_cell(cell):
 			if red_team.current_position == cell:
 				return red_team
 	return null
-	
-func change_turn():
-	if turn == Turn.blue:
-		turn = Turn.red
-		for red_team in red_team_units:
-			red_team.next_turn()
-	else:
-		turn = Turn.blue
-		for blue_team in blue_team_units:
-			blue_team.next_turn()
+
 
 func highlight_reachable_cells():
 	for i in range(-selected.remaining_movement, selected.remaining_movement+1):
@@ -199,10 +182,25 @@ func clear_selected():
 	emit_signal("on_deselect")
 	
 func update_character_panel():
-	# character_panel.update_panel(selected.current_position, selected.move_range, selected_is_current_team)
-	emit_signal("on_select", selected, selected_is_current_team)
+	var selected_team = null
+	if selected_is_current_team and turn == Turn.blue:
+		selected_team = Turn.blue
+	elif !selected_is_current_team and turn == Turn.red:
+		selected_team = Turn.blue
+	else:
+		selected_team = Turn.red
+	
+	emit_signal("on_select", selected, selected_team)
 
 
 
-func _on_TurnManager_on_turn_change():
-	pass # Replace with function body.
+func _on_TurnManager_on_turn_change(turn_team, turn_num):
+	turn = turn_team
+	if turn == Turn.blue:
+		turn = Turn.blue
+		for blue_team in blue_team_units:
+			blue_team.new_turn()
+	else:
+		turn = Turn.red
+		for red_team in red_team_units:
+			red_team.new_turn()

@@ -1,8 +1,8 @@
 extends Node
 
 
-var turn_num = 0
-var turn_team = Turn.blue
+var turn_num
+var turn_team
 
 
 signal on_turn_change
@@ -11,7 +11,9 @@ signal on_turn_change
 enum Turn {blue, red}
 
 func _ready():
-	pass
+	turn_team = Turn.red
+	turn_num = 0
+#	emit_signal("on_turn_change", turn_team, turn_num)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,7 +29,7 @@ func _input(event):
 
 
 func change_turn():
-	turn_num += turn_num
+	turn_num = turn_num + 1
 	
 	if turn_team == Turn.blue:
 		turn_team = Turn.red

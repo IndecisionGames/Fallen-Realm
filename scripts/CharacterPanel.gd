@@ -4,18 +4,20 @@ onready var position_text = get_node("Rows/Position")
 onready var speed_text = get_node("Rows/Speed")
 onready var background = get_node("Background")
 
+enum Turn {blue, red}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible = false
 
-func update_panel(pos, speed, is_ally):
+func update_panel(pos, speed, team):
 	position_text.text = String(pos.x) + ", " + String(pos.y)
 	speed_text.text = "Speed: " + String(speed)
 
-	if is_ally:
-		background.color = Color("161c4a")
-	else:
-		background.color = Color("4a1616")
+	if team == Turn.blue:
+		background.color = Color("101e63")
+	elif team == Turn.red:
+		background.color = Color("631010")
 
 func _on_CharacterController_on_deselect():
 	visible = false
