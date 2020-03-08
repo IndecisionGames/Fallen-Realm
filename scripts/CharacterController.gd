@@ -51,6 +51,7 @@ func _process(_delta):
 	# in this trigggered function it could get the turn state by calling some function in the master game controller
 	if Input.is_action_just_pressed("end_turn"):
 		change_turn()
+		
 	# TAB - cycle between all blue_team_units
 		
 func _input(event):
@@ -198,6 +199,10 @@ func clear_selected():
 	emit_signal("on_deselect")
 	
 func update_character_panel():
-	character_panel.update_panel(selected.current_position, selected.move_range, selected_is_current_team)
-	emit_signal("on_select")
+	# character_panel.update_panel(selected.current_position, selected.move_range, selected_is_current_team)
+	emit_signal("on_select", selected, selected_is_current_team)
 
+
+
+func _on_TurnManager_on_turn_change():
+	pass # Replace with function body.

@@ -21,5 +21,10 @@ func _on_CharacterController_on_deselect():
 	visible = false
 
 
-func _on_CharacterController_on_select():
+func _on_CharacterController_on_select(character, is_ally):
+	update_panel(character.current_position, character.move_range, is_ally)
 	visible = true
+
+
+func _on_TurnManager_on_turn_change():
+	pass # Replace with function body.
