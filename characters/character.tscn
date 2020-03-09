@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/characters/character_melee.gd" type="Script" id=1]
 [ext_resource path="res://characters/knight/banner/knight_banner_blue.png" type="Texture" id=2]
+[ext_resource path="res://characters/hunter/HunterFrames.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://characters/knight/KnightFrames.tres" type="SpriteFrames" id=4]
 
 [node name="Character" type="Node2D"]
@@ -14,7 +15,15 @@ z_index = 2
 texture = ExtResource( 2 )
 offset = Vector2( 0, 5 )
 
-[node name="CharacterSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 2, -25.25 )
-scale = Vector2( 1.01563, 1.05078 )
+[node name="Knight" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 1.42109e-14, -20 )
+scale = Vector2( 0.336914, 0.371094 )
 frames = ExtResource( 4 )
+
+[node name="Hunter" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 1.42109e-14, -20 )
+scale = Vector2( 0.336914, 0.371094 )
+frames = ExtResource( 3 )
+animation = "walk"

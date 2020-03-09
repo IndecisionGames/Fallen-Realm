@@ -3,7 +3,7 @@ extends Node2D
 var green_cell = preload("res://map/CellHighlight.tscn")
 var movement_indicator = preload("res://map/movement_indicator.tscn")
 onready var grid = get_node("/root/Game/Map/Grid")
-onready var character_panel = get_node("/root/Game/CanvasLayer/CharacterPanel")
+onready var character_panel = get_node("/root/Game/CanvasLayer/UI/CharacterPanel")
 
 onready var blue_characters = get_node("BlueTeam")
 onready var red_characters = get_node("RedTeam")

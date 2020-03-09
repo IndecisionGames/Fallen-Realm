@@ -1,20 +1,35 @@
-[gd_resource type="SpriteFrames" load_steps=6 format=2]
+[gd_resource type="SpriteFrames" load_steps=21 format=2]
 
-[ext_resource path="res://characters/knight/walk/knight-walk1.png" type="Texture" id=1]
-[ext_resource path="res://characters/knight/walk/knight-walk2.png" type="Texture" id=2]
-[ext_resource path="res://characters/knight/knight.png" type="Texture" id=3]
-[ext_resource path="res://characters/knight/walk/knight-walk3.png" type="Texture" id=4]
-[ext_resource path="res://characters/knight/walk/knight-walk4.png" type="Texture" id=5]
+[ext_resource path="res://characters/external/Knight/Stand/0.png" type="Texture" id=1]
+[ext_resource path="res://characters/external/Knight/Stand/7.png" type="Texture" id=2]
+[ext_resource path="res://characters/external/Knight/Stand/5.png" type="Texture" id=3]
+[ext_resource path="res://characters/external/Knight/Stand/4.png" type="Texture" id=4]
+[ext_resource path="res://characters/external/Knight/Walk/2.png" type="Texture" id=5]
+[ext_resource path="res://characters/external/Knight/Stand/8.png" type="Texture" id=6]
+[ext_resource path="res://characters/external/Knight/Walk/8.png" type="Texture" id=7]
+[ext_resource path="res://characters/external/Knight/Walk/7.png" type="Texture" id=8]
+[ext_resource path="res://characters/external/Knight/Stand/1.png" type="Texture" id=9]
+[ext_resource path="res://characters/external/Knight/Walk/1.png" type="Texture" id=10]
+[ext_resource path="res://characters/external/Knight/Walk/3.png" type="Texture" id=11]
+[ext_resource path="res://characters/external/Knight/Stand/2.png" type="Texture" id=12]
+[ext_resource path="res://characters/external/Knight/Walk/0.png" type="Texture" id=13]
+[ext_resource path="res://characters/external/Knight/Walk/4.png" type="Texture" id=14]
+[ext_resource path="res://characters/external/Knight/Walk/9.png" type="Texture" id=15]
+[ext_resource path="res://characters/external/Knight/Walk/5.png" type="Texture" id=16]
+[ext_resource path="res://characters/external/Knight/Stand/6.png" type="Texture" id=17]
+[ext_resource path="res://characters/external/Knight/Stand/9.png" type="Texture" id=18]
+[ext_resource path="res://characters/external/Knight/Walk/6.png" type="Texture" id=19]
+[ext_resource path="res://characters/external/Knight/Stand/3.png" type="Texture" id=20]
 
 [resource]
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 20 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 17 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 18 ) ],
 "loop": true,
 "name": "default",
-"speed": 5.0
+"speed": 8.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 1 ) ],
+"frames": [ ExtResource( 13 ), ExtResource( 10 ), ExtResource( 5 ), ExtResource( 11 ), ExtResource( 14 ), ExtResource( 16 ), ExtResource( 19 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "walk",
-"speed": 6.0
+"speed": 16.0
 } ]

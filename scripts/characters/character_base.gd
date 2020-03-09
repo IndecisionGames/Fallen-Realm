@@ -43,8 +43,7 @@ func process_movement(delta):
 			movement_vec = Vector2(0,0)
 			if next_cell == final_cell:
 				moving = false
-				character_sprite.stop()
-				character_sprite.set_animation("default")
+				character_sprite.play("default")
 			else:
 				go_to_next_cell()
 		else:
@@ -97,8 +96,14 @@ func change_to_blue():
 	banner_texture = blue_banner_texture
 	banner_selected_texture = blue_banner_selected_texture
 	banner.set_texture(banner_texture)
+	init_sprite()
 	
 func change_to_red():
 	banner_texture = red_banner_texture
 	banner_selected_texture = red_banner_selected_texture
 	banner.set_texture(banner_texture)
+	init_sprite()
+
+func init_sprite():
+	character_sprite.set_visible(true)
+	character_sprite.play("default")
