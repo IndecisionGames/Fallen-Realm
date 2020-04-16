@@ -192,8 +192,6 @@ func update_character_panel():
 	
 	emit_signal("on_select", selected, selected_team)
 
-
-
 func _on_TurnManager_on_turn_change(turn_team, turn_num):
 	if selected != null:
 		clear_selected()

@@ -18,7 +18,7 @@ func _ready():
 func update_panel(pos, hp, movement_points, remaing_movement_points, a_damage, a_range, team):
 	health_points.text = "HP: %s" % hp
 	position.text = "Position: (%s, %s)" % [pos.x, pos.y]
-	movement.text = "Movement: %s/%s" % [remaing_movement_points, remaing_movement_points]
+	movement.text = "Movement: %s/%s" % [remaing_movement_points, movement_points]
 	
 	attack_damage.text = "Damage: %s" % a_damage
 	attack_range.text = "Range: %s" % a_range

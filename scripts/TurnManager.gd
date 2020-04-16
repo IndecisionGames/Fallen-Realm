@@ -18,10 +18,6 @@ func _input(event):
 	if Input.is_action_just_pressed("end_turn"):
 		change_turn()
 
-
-
-
-
 func change_turn():
 	turn_num = turn_num + 1
 	

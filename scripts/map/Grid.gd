@@ -10,6 +10,12 @@ func _ready():
 	grid_size = get_used_cells().back()
 	highlight.set_visible(false)
 	initialise_cells()
+	
+func initialise_cells():
+	for x in range(0, grid_size.x + 1):
+		for y in range(0, grid_size.y + 1):
+			var cell = cell_class.Cell.new("Grass", Vector2(x, y))
+			cells[Vector2(x, y)] = cell
 
 func _process(_delta):
 	var mouse_position = get_global_mouse_position()
@@ -24,28 +30,16 @@ func _process(_delta):
 func cell_in_map(cell):
 	return cell.x >= 0 and cell.x <= grid_size.x and cell.y >= 0 and cell.y <= grid_size.y
 		
-func disable_highlight():
-	highlight.set_visible(false)
-
 func hightlight_cell(highlight_type, cell):
 	var target_pos = map_to_world_fixed(cell)
 	highlight_type.global_position = target_pos
 	highlight_type.set_visible(true)
 
+func disable_highlight():
+	highlight.set_visible(false)
+
 func map_to_world_fixed(coords):
 	return map_to_world(coords, false) + (cell_size / 2)
-	
-func distance(cell1, cell2):
-	return map_to_world_fixed(cell1).distance_to(map_to_world_fixed(cell2))
-	
-func distance_squared(cell1, cell2):
-	return map_to_world_fixed(cell1).distance_squared_to(map_to_world_fixed(cell2))
-
-func initialise_cells():
-	for x in range(0, grid_size.x + 1):
-		for y in range(0, grid_size.y + 1):
-			var cell = cell_class.Cell.new("Grass", Vector2(x, y))
-			cells[Vector2(x, y)] = cell
 
 func get_movement_path(start, end):
 	return a_star(start, end)
@@ -107,4 +101,10 @@ func get_neighbours(current, end):
 					neighbour.f = neighbour.g + neighbour.h
 					neighbours.append(neighbour)
 	return neighbours
+	
+func distance(cell1, cell2):
+	return map_to_world_fixed(cell1).distance_to(map_to_world_fixed(cell2))
+	
+func distance_squared(cell1, cell2):
+	return map_to_world_fixed(cell1).distance_squared_to(map_to_world_fixed(cell2))
 

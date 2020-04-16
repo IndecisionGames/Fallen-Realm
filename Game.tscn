@@ -303,8 +303,8 @@ z_index = 2
 position = Vector2( 1080, 440 )
 z_index = 2
 script = ExtResource( 9 )
-[connection signal="on_turn_change" from="TurnManager" to="CharacterController" method="_on_TurnManager_on_turn_change"]
 [connection signal="on_turn_change" from="TurnManager" to="CanvasLayer/UI/TurnPanel" method="_on_TurnManager_on_turn_change"]
+[connection signal="on_turn_change" from="TurnManager" to="CharacterController" method="_on_TurnManager_on_turn_change"]
 [connection signal="mouse_entered" from="CanvasLayer/MouseBorder/UpLeft" to="Camera2D" method="_on_UpLeft_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/MouseBorder/UpLeft" to="Camera2D" method="_on_UpLeft_mouse_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/MouseBorder/Up" to="Camera2D" method="_on_Up_mouse_entered"]
